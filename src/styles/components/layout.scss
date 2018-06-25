@@ -1,0 +1,101 @@
+html {
+    font-family: 'Open Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+* {
+    box-sizing: border-box;
+
+    :focus {
+        outline: none;
+    }
+}
+
+body {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative;
+    background-color: #dfdfdf;
+    background-image: linear-gradient(to bottom, #dddbd1, #d2dbdc);
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    z-index: 10;
+    @include xl {
+        max-width: inherit;
+        position: fixed;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: $text-color;
+}
+
+main {
+    margin-top: $header-height;
+
+    @include sm {
+        margin-top: $header-height*2;
+    }
+}
+
+.todo-app {
+    background-color: #f7f9fa;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.06), 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+    position: relative;
+    height: 100%;
+    width: 100%;
+    overflow: scroll;
+    
+    @include xl {
+        height: 80%;
+        max-width: 1200px;
+    }
+}
+
+button, .button {
+    display: inherit;
+    padding: 0 16px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 2px;
+    color: #fff;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    border: 0;
+    background-color: $primary-color;
+    line-height: 36px;
+    height: 36px;
+
+    &:hover {
+        background-color: lighten($primary-color, 1%);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    &--default {
+        padding: 0 16px;
+        line-height: 36px;
+        
+        .material-icons {
+            vertical-align: text-bottom;
+        }
+
+        &:hover {
+            background-color: #efefef;
+        }
+    }
+
+    &--big {
+        height: 44px;
+        line-height: 44px;
+        font-size: 18px;
+        padding: 0 32px;
+    }
+}

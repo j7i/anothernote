@@ -1,0 +1,19 @@
+@import "mixins";
+
+%width-shared {
+    @include sm {
+        width: 95%;
+    }
+    
+    @include md {
+        width: 80%;
+    }
+
+    @include lg {
+        width: 70%;
+    }
+
+    @include xl {
+        width: 60%;
+    }
+}

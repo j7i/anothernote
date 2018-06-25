@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>notes-jw</title>
+    <link rel="stylesheet" href="/styles/main.min.css">
+</head>
+<body>
+    <div class="todo-app">
+        <header>
+            <div class="navigation__outer">
+                <nav class="navigation">
+                    <a href="index.html" class="button--default">
+                        <i class="material-icons">clear</i> Cancel
+                    </a>
+                    <span class="clear">&nbsp;</span>
+                </nav>
+            </div>
+        </header>
+
+        <main class="note-details">
+            <div class="note-details__inner">
+
+                <form class="edit-note" id="new-note">
+
+                    <div class="edit-note__description">
+                        <div class="edit-note__title">
+                            <h4>Title</h4>
+                            <input id="note-title" type="text" value="" placeholder="Add a title">
+                        </div>
+        
+                        <div class="edit-note__content">
+                            <h4>Description</h4>
+                            <textarea id="note-content" value="" placeholder="Describe your task"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="edit-note__addition">
+                        <div class="edit-note__date">
+                            <h4>When should it be completed?</h4>
+                            <input id="note-date" value="" type="date">
+                        </div>
+
+                        <div class="edit-note__rating">
+                            <h4>You can set a priority</h4>
+                            <div class="edit-note__rating-options">
+                                <i class="material-icons">star</i>
+                                <i class="material-icons">star_half</i>
+                                <i class="material-icons">star_border</i>
+                                <p>Middle Priority</p>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+                <div class="note-details__save">
+                    <a id="new-todo" form="new-note" class="button button--big">Add Todo</a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/scripts/bundle.js"></script>
+</body>
+</html>

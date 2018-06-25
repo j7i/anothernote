@@ -1,0 +1,105 @@
+.notes {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    width: 100%;
+    
+    &__inner {
+        @extend %width-shared;
+    }
+
+    &__new {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+        
+        button {
+            padding-left: 12px;
+        }
+        
+        i {
+            vertical-align: bottom;
+            padding-right: 6px;
+        }
+    }
+
+    &__heading {
+        margin-top: 16px;
+        font-size: 14px;
+    }
+}
+
+.note-item {
+    background-color: #fff;
+    border-radius: 2px;
+    box-sizing: border-box;
+    box-shadow: $box-shadow-1;
+    margin-bottom: 32px;
+    min-height: 96px;
+    padding: 8px 32px;
+    position: relative;
+    width: 100%;
+
+    &--done {
+        .note-item__title {
+            color: $primary-color;
+        }
+        
+        .note-item__content {
+            text-decoration: line-through;
+        }
+    }
+
+    &__content {
+
+    }
+
+    &__title {
+
+        i {
+            vertical-align: bottom;
+        }
+    }
+
+    &__description {
+
+    }
+
+    &__importance {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        color: $primary-color;
+    }
+
+    &__edit {
+        align-items: center;
+        background-color: $primary-color;
+        border-radius: 0 2px 2px 0;
+        color: white;
+        cursor: pointer;
+        display: flex;
+        height: 100%;
+        justify-content: center;
+        position: absolute;
+        right: 0px;
+        visibility: hidden;
+        top: 0;
+        width: 64px;
+
+        & a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+
+    &:hover {
+        .note-item__edit {
+            border-left: 12px solid #fff;
+            visibility: visible;
+        }
+    }
+
+}

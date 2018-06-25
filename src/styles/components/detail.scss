@@ -1,0 +1,112 @@
+.note-details {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    width: 100%;
+
+    &__inner {
+        @extend %width-shared;
+    }
+
+    &__save {
+        display: relative;
+        float: right;
+    }
+}
+
+.edit-note {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 16px;
+    width: 100%;
+
+    & input, textarea {
+        border: none;
+        border-bottom: 2px solid $light-grey-color;
+        font-size: 16px;
+        padding: 16px 24px 8px 0;
+        transition: border-bottom .2ms ease-in-out;
+        width: 100%;
+        
+        &:focus {
+            border-bottom: 2px solid $text-color;
+            outline: none;
+        }
+    }
+
+    & h4 {
+        margin-bottom: 8px;
+    }
+
+    &__description {
+        background-color: #fff;
+        border-radius: 2px;
+        box-sizing: border-box;
+        box-shadow: $box-shadow-1;
+        margin-bottom: 32px;
+        min-height: 96px;
+        padding: 8px 32px;
+        width: 100%;
+
+        & h4 {
+            margin-bottom: 0;
+        }
+    }
+
+    &__title {
+        margin-bottom: 48px;
+        width: 100%;
+    }
+
+    &__content {
+        margin-bottom: 32px;
+
+        textarea {
+            height: 44px;
+        }
+    }
+
+    &__rating {
+        padding-left: 36px;
+        width: 50%;
+    }
+
+    &__rating-options {
+        align-items: center;
+        background-color: #fff;
+        border-bottom: 2px solid $light-grey-color;
+        display: flex;
+        padding: 16px 24px 8px 16px;
+        position: relative;
+
+        p {
+            margin: 0;
+            position: absolute;
+            right: 16px;
+            font-size: 14px;
+        }
+
+        & i:not(:last-of-type) {
+            margin-right: 8px;
+        }
+    }
+
+    &__date {
+        width: 50%;
+    }
+
+    &__addition {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 32px;
+        background-color: #fff;
+        border-radius: 2px;
+        box-sizing: border-box;
+        box-shadow: $box-shadow-1;
+        min-height: 96px;
+        padding: 8px 32px 32px;
+        width: 100%;
+    }
+}

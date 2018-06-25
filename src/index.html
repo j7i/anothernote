@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>notes-jw</title>
+    <link rel="stylesheet" type="text/css" href="/styles/main.min.css">
+</head>
+<body>
+    <div class="todo-app">
+        <header>
+            <div class="filter__outer">
+                <nav class="filter">
+                    <a class="button add-new" href="detail.html">
+                        <i class="material-icons">add</i> Add Todo
+                    </a>
+                    <div class="filter__group filter__group--mobile-up">
+                        <a class="filter__item" href="#">By finish date</a>
+                        <a class="filter__item active" href="#">By created date</a>
+                        <a class="filter__item" href="#">By importance</a>
+                    </div>
+                    <div class="filter__group">
+                        <a class="filter__toggle active"><i class="material-icons">check_box</i> Show Finished</a>
+                    </div>
+                </nav>
+            </div>
+            <div class="filter__outer filter__outer--mobile">
+                <nav class="filter filter__group--mobile">
+                    <div class="filter__group">
+                        <a class="filter__item" href="#">By finish date</a>
+                        <a class="filter__item active" href="#">By created date</a>
+                        <a class="filter__item" href="#">By importance</a>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <main class="notes">
+            <div class="notes__inner">
+
+                <h2 class="notes__heading">Today</h2>
+
+                <div class="note-item">
+                    <div class="note-item__description">
+                        <h3 class="note-item__title"><i class="material-icons">check_box_outline_blank</i> Rattenparty 2019 organisieren</h3>
+                        <p class="note-item__content">Gestalten der Würmchen, der Mückchen näher an meinem Herzen fühle, und fühle die Gegenwart des Allmächtigen, der uns nach seinem Bilde schuf</p>
+                    </div>
+                    <div class="note-item__edit">
+                        <i class="material-icons">edit</i>
+                    </div>
+                </div>
+
+                <h2 class="notes__heading">Whenever</h2>
+
+                <div class="note-item note-item--done">
+                    <div class="note-item__description">
+                        <h3 class="note-item__title"><i class="material-icons">check_box</i> Notizenapplikation fertigstellen</h3>
+                        <p class="note-item__content">Gefühle von ruhigem Dasein versunken, daß meine Kunst darunter leidet Füdli Brunz.</p>
+                    </div>
+                    <div class="note-item__importance">
+                        <i class="material-icons">star</i>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/scripts/bundle.js"></script>
+</body>
+
+
+</html>
