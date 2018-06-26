@@ -1,51 +1,58 @@
-import NoteService from './services/noteService.js';
+import NoteService from './services/noteService.js'
 
-class IndexController {
+class Refactor {
     constructor() {
-        this._noteService = new NoteService();
+        this.noteService = new NoteService();
+        
+        this.noteTemplate = document.querySelector('#notes-template')
+        this.noteArea = document.querySelector('.notes__inner')
+
+        this.completeToggles = []
     }
 
-    _render(notes) {
-        const notesArea = document.querySelector('.notes__inner')
+    render(notes) {
+        this.renderNotes(notes)
+        this.findCompleteToggles()
+        this.applyCompleteToggles()
 
-        for(let note of notes) {
-            console.log(note)
-            let itemMarkup = `
-                <div data-id="${note._id}" class="note-item${note.state == 'PENDING' ? '' : ' note-item--done'}">
-                    <div class="note-item__description">
-                        <h3 class="note-item__title">
-                            <i class="material-icons">${note.state == 'PENDING' ? 'check_box_outline_blank' : 'check_box_done'}</i> ${note.title}
-                        </h3>
-                        <p class="note-item__content">${note.content}</p>
-                    </div>
-                    <div class="note-item__importance">
-                        <i class="material-icons">star</i>
-                    </div>
-                    <a href="#">
-                        <div class="note-item__edit">
-                            <i class="material-icons">edit</i>
-                        </div>
-                    </a>
-                </div>
-            `
-            
-            notesArea.insertAdjacentHTML('afterbegin', itemMarkup)
-        }
+    }
+
+    renderNotes(notes) {
+        const noteTemplate = this.noteTemplate.innerHTML
+        const compileNoteTemplate = Handlebars.compile(noteTemplate)
+        this.noteArea.innerHTML = compileNoteTemplate(notes)
+        console.log(notes)
+    }
+
+    findCompleteToggles() {
+        this.completeToggles = document.querySelectorAll('.note__complete-toggle')
+    }
+
+    applyCompleteToggles() {
+        this.completeToggles.forEach(toggle => {
+            toggle.addEventListener('click', async (e) => {
+                const id = e.target.closest('.note').dataset.id;
+                await this.noteService.toggleComplete(id);
+                this.updateView();
+            })
+        })
     }
 
     async create(note) {
-        const notes = await this._noteService.create(note);
+        const notes = await this.noteService.create(note)
     }
     
     async updateView() {
-        const notes = await this._noteService.getAllNotes();
-        this._render(notes);
+        const notes = await this.noteService.getAllNotes()
+        this.render(notes)
     }
+
+    
 
 }
 
 //controller
-const controller = new IndexController();
+const controller = new Refactor();
 controller.updateView();
 
 const addNewNoteButton = document.querySelector('#new-todo')

@@ -4,9 +4,10 @@
 	"description": "Consolidate basics in html, css and javascript - notes application.",
 	"main": "index.js",
 	"scripts": {
+		"build": "gulp default",
+		"watch": "gulp serve",
 		"express": "node --experimental-modules server.mjs",
 		"express:hot": "onchange 'dist/scripts/*.js' 'dist/styles/*.css' 'dist/*.html' -i -- yarn express",
-		"watch": "open http://localhost:3000 && gulp serve",
 		"serve": "npm-run-all --parallel express:hot watch"
 	},
 	"author": "Joel Willi",

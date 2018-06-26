@@ -88,7 +88,7 @@ const plumberErrorHandler = function(err) {
 const scssProcessing = lazypipe()
 	.pipe(plumber, {errorHandler: plumberErrorHandler})
 	.pipe(sass, {outputStyle: ':compact'})
-	//.pipe(autoprefixer, 'last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4')
+	//.pipe(autoprefixer, 'last 2 version')
 	.pipe(gulp.dest, config.destCSS)
 	.pipe(size, {showFiles: true})
 	.pipe(rename, { suffix: '.min' })
@@ -129,7 +129,7 @@ gulp.task('live', () => {
 });
 
 //default task - one time html, styles and scripts
-gulp.task('default', ['htmls', 'styles', 'scripts']);
+gulp.task('default', ['html', 'styles', 'scripts']);
 
 //start livereload
 gulp.task('serve', ['live'], () => {

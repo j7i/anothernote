@@ -35,35 +35,31 @@
         </header>
 
         <main class="notes">
-            <div class="notes__inner">
-
-                <h2 class="notes__heading">Today</h2>
-
-                <div class="note-item">
-                    <div class="note-item__description">
-                        <h3 class="note-item__title"><i class="material-icons">check_box_outline_blank</i> Rattenparty 2019 organisieren</h3>
-                        <p class="note-item__content">Gestalten der Würmchen, der Mückchen näher an meinem Herzen fühle, und fühle die Gegenwart des Allmächtigen, der uns nach seinem Bilde schuf</p>
-                    </div>
-                    <div class="note-item__edit">
-                        <i class="material-icons">edit</i>
-                    </div>
-                </div>
-
-                <h2 class="notes__heading">Whenever</h2>
-
-                <div class="note-item note-item--done">
-                    <div class="note-item__description">
-                        <h3 class="note-item__title"><i class="material-icons">check_box</i> Notizenapplikation fertigstellen</h3>
-                        <p class="note-item__content">Gefühle von ruhigem Dasein versunken, daß meine Kunst darunter leidet Füdli Brunz.</p>
-                    </div>
-                    <div class="note-item__importance">
-                        <i class="material-icons">star</i>
-                    </div>
-                </div>
-            </div>
+            <div class="notes__inner"></div>
         </main>
     </div>
-
+    <script id="notes-template" type="text/x-handlebars-template">
+        {{#each this}}
+            <div data-id="{{_id}}" class="note{{#if completed}} note--completed{{/if}}">
+                <div class="note__description">
+                    <h3 class="note__title">
+                        <i class="material-icons note__complete-toggle">{{#if completed}}check_box{{else}}check_box_outline_blank{{/if}}</i>
+                        {{title}}
+                    </h3>
+                    <p class="note__content">{{content}}</p>
+                </div>
+                <div class="note__importance">
+                    <i class="material-icons">star</i>
+                </div>
+                <a href="#">
+                    <div class="note__edit">
+                        <i class="material-icons">edit</i>
+                    </div>
+                </a>
+            </div>
+        {{/each}}
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="/scripts/bundle.js"></script>
 </body>
 

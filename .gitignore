@@ -4,6 +4,9 @@
 # dependencies
 /node_modules
 
+# db Files
+.db
+
 # IDE - VSCode
 .vscode/*
 !.vscode/settings.json
