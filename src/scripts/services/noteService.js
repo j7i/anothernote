@@ -1,6 +1,6 @@
 export default class NoteService {
-    async getAllNotes() {
-        const res = await fetch(`/notes`, {
+    async getAllNotes(sort, filter) {
+        const res = await fetch(`/notes?sort=${sort}&filter=${filter}`, {
             method: 'GET'
         })
         return await res.json()

@@ -4,6 +4,8 @@ import NoteController from './controller/noteController.js'
 class IndexController {
     constructor() {
         this.noteService = new NoteService();
+        this.sort = 'finishDate'
+        this.filter = false
         
         this.noteTemplate = document.querySelector('#notes-template')
         this.noteArea = document.querySelector('.notes__inner')
@@ -49,7 +51,7 @@ class IndexController {
     }
     
     async updateView() {
-        const notes = await this.noteService.getAllNotes()
+        const notes = await this.noteService.getAllNotes(this.sort, this.filter)
         this.render(notes)
     }
 }

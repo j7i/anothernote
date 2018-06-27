@@ -32,8 +32,14 @@ export class NoteStore {
         return await this.db.update({_id: note._id}, note, {})
     }
 
-    async all() {
-        return await this.db.cfind({}).sort({ createdDate: -1 }).exec()
+    async all(sort, filterCompleted) {
+        let notes
+        if (sort === 'finishDate') {
+            notes = await this.db.cfind({completed: filterCompleted}).sort({ finishDate : -1 }).exec()
+        } else {
+            notes = await this.db.cfind({completed: filterCompleted}).sort({ creadedAt : -1 }).exec()
+        }
+        return notes
     }
 }
 
