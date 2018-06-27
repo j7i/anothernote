@@ -2,12 +2,12 @@ import Datastore from 'nedb-promise'
 import path from 'path'
 
 export class Note {
-    constructor(title, content, finishDate, rating) {
+    constructor(title, content, finishDate, importance) {
         this.title = title
         this.content = content
         this.createdDate = new Date()
         this.finishDate = finishDate
-        this.rating = rating
+        this.importance = importance
         this.completed = false
     }
 }
@@ -20,7 +20,7 @@ export class NoteStore {
     }
 
     async create(body) {
-        let note = new Note(body.title, body.content, body.finishDate, body.rating)
+        let note = new Note(body.title, body.content, body.finishDate, body.importance)
         return await this.db.insert(note)
     }
 

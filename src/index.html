@@ -41,6 +41,7 @@
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each this}}
             <div data-id="{{_id}}" class="note{{#if completed}} note--completed{{/if}}">
+                {{#unless completed}}<div class="note__importance note__importance--{{importance}}"></div>{{/unless}}
                 <div class="note__description">
                     <h3 class="note__title">
                         <i class="material-icons note__complete-toggle">{{#if completed}}check_box{{else}}check_box_outline_blank{{/if}}</i>
@@ -48,10 +49,7 @@
                     </h3>
                     <p class="note__content">{{content}}</p>
                 </div>
-                <div class="note__importance">
-                    <i class="material-icons">star</i>
-                </div>
-                <a href="#">
+                <a href="/detail.html?id={{_id}}">
                     <div class="note__edit">
                         <i class="material-icons">edit</i>
                     </div>

@@ -11,6 +11,11 @@ html {
     }
 }
 
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
+}
+
 body {
     display: flex;
     width: 100%;
@@ -21,6 +26,7 @@ body {
     position: relative;
     background-color: #dfdfdf;
     background-image: linear-gradient(to bottom, #dddbd1, #d2dbdc);
+    overflow: hidden;
 }
 
 header {
@@ -52,7 +58,7 @@ main {
     position: relative;
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow-y: scroll;
     
     @include xl {
         height: 80%;

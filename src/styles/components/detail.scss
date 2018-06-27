@@ -69,19 +69,35 @@
     }
 
     &__rating {
-        padding-left: 36px;
-        width: 50%;
+        padding-left: 32px;
+
+        @include sm {
+            margin-top: 32px;
+            padding-left: 0;
+        }
     }
 
-    &__rating-options {
+    &__importance {
         align-items: center;
         background-color: #fff;
         border-bottom: 2px solid $light-grey-color;
         display: flex;
         padding: 16px 24px 8px 16px;
         position: relative;
+        justify-content: space-between;
+        width: 100%;
 
-        p {
+        label {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        input {
+            padding: 0;
+            margin: 8px 0;
+        }
+
+        span {
             margin: 0;
             position: absolute;
             right: 16px;
@@ -94,7 +110,20 @@
     }
 
     &__date {
+        input {
+            padding-bottom: 0;
+        }
+    }
+
+    &__date, &__rating {
+        display: flex;
         width: 50%;
+        flex-direction: column;
+        justify-content: space-between;
+
+        @include sm {
+            width: 100%;
+        }
     }
 
     &__addition {
@@ -108,5 +137,9 @@
         min-height: 96px;
         padding: 8px 32px 32px;
         width: 100%;
+
+        @include sm {
+            flex-direction: column;
+        }
     }
 }

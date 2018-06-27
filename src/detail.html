@@ -21,7 +21,6 @@
             <div class="note-details__inner">
 
                 <form class="edit-note" id="note-form">
-
                     <div class="edit-note__description">
                         <div class="edit-note__title">
                             <h4>Title</h4>
@@ -41,12 +40,20 @@
                         </div>
 
                         <div class="edit-note__rating">
-                            <h4>You can set a priority</h4>
-                            <div class="edit-note__rating-options">
-                                <i class="material-icons">star</i>
-                                <i class="material-icons">star_half</i>
-                                <i class="material-icons">star_border</i>
-                                <p>Middle Priority</p>
+                            <h4>Priority</h4>
+                            <div class="edit-note__importance">
+                                <label>Low
+                                    <input type="radio" name="importance" value="1" class="edit-note__importance-radio" checked/>
+                                    <span></span>
+                                </label>
+                                <label>Medium
+                                    <input type="radio" name="importance" value="2" class="edit-note__importance-radio" />
+                                    <span></span>
+                                </label>
+                                <label>High
+                                    <input type="radio" name="importance" value="3" class="edit-note__importance-radio" />
+                                    <span></span>
+                                </label>
                             </div>
                         </div>
                     </div>
