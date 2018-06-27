@@ -1,0 +1,3 @@
+{"title":"Added todo","content":"Beschriibig","createdDate":"2018-06-26T19:08:10.760Z","finishDate":"2018-06-29","rating":1,"completed":false,"_id":"B2BlDsGiFF1kmIsC","createdAt":{"$$date":1530040090760},"updatedAt":{"$$date":1530040094650}}
+{"title":"Very first","content":"May written in located file","createdDate":"2018-06-26T17:02:08.649Z","finishDate":"2018-06-26","rating":1,"completed":false,"_id":"kdDk0WKtcPRp6adF","createdAt":{"$$date":1530032528649},"updatedAt":{"$$date":1530039667173}}
+{"title":"Second","content":"Whop whop","createdDate":"2018-06-26T17:53:04.390Z","finishDate":"2018-06-16","rating":1,"completed":false,"_id":"yxokPAAtQRIJMcEl","createdAt":{"$$date":1530035584390},"updatedAt":{"$$date":1530040069224}}

@@ -1,4 +1,5 @@
 import NoteService from './services/noteService.js'
+import NoteController from './controller/noteController.js'
 
 class Refactor {
     constructor() {
@@ -46,52 +47,8 @@ class Refactor {
         const notes = await this.noteService.getAllNotes()
         this.render(notes)
     }
-
-    
-
 }
 
 //controller
-const controller = new Refactor();
-controller.updateView();
-
-const addNewNoteButton = document.querySelector('#new-todo')
-const noteTitleEl = document.querySelector('#note-title')
-const noteContentEl = document.querySelector('#note-content')
-const noteDateEl = document.querySelector('#note-date')
-
-const detailView = document.querySelector('.note-details')
-
-if (detailView) {
-    let title
-    let content
-    let finishDate
-    let rating = 1
-
-    noteTitleEl.addEventListener('input', updateTitle)
-    noteContentEl.addEventListener('input', updateContent)
-    noteDateEl.addEventListener('input', updateDate)
-
-    function updateTitle () { 
-        title = this.value
-    }
-
-    function updateContent () { 
-        content = this.value
-    }
-
-    function updateDate () {
-        finishDate = this.value
-    }
-
-    addNewNoteButton.addEventListener('click', function() {
-        let note = {
-            title,
-            content,
-            finishDate,
-            rating
-        }
-        console.log(note)
-        controller.create(note)
-    }, false)
-}
+const controller = new Refactor()
+controller.updateView()
