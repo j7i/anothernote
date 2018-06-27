@@ -59,6 +59,7 @@
 
     &__item {
         align-items: center;
+        border: none;
         border-bottom: 3px solid transparent;
         color: #7e7e7e;
         display: inherit;
@@ -66,7 +67,9 @@
         height: 100%;
         padding: 0 16px 0;
         text-decoration: none;
+        cursor: pointer;
         transition: all .2ms ease-in-out;
+        outline: none;
         
         &.active {
             background-color: lighten($primary-color, 32%);
@@ -78,7 +81,6 @@
 
         &:hover {
             color: #484848;
-            font-weight: 600;
         }
     }
 

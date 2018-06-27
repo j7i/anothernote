@@ -66,15 +66,17 @@ main {
     }
 }
 
-button, .button {
+.button {
     display: inherit;
     padding: 0 16px;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 600;
     border-radius: 2px;
     color: #fff;
     letter-spacing: .5px;
     white-space: nowrap;
+    text-decoration: none;
     border: 0;
     background-color: $primary-color;
     line-height: 36px;

@@ -13,7 +13,7 @@ export class Note {
 }
 
 export class NoteStore {
-    constructor(db) {
+    constructor(db, sort, filterCompleted) {
         this.db = db || new Datastore({
             filename: `${path.resolve('data')}/notes.db`, autoload: true, timestampData: true
         })
@@ -34,10 +34,12 @@ export class NoteStore {
 
     async all(sort, filterCompleted) {
         let notes
-        if (sort === 'finishDate') {
-            notes = await this.db.cfind({completed: filterCompleted}).sort({ finishDate : -1 }).exec()
+        if (sort === 'byFinishDate') {
+            notes = await this.db.cfind({}).sort({ finishDate: 1 }).exec()
+        } else if (sort === 'byImportance') {
+            notes = await this.db.cfind({}).sort({ importance: -1 }).exec()
         } else {
-            notes = await this.db.cfind({completed: filterCompleted}).sort({ creadedAt : -1 }).exec()
+            notes = await this.db.cfind({}).sort({ createdAt: -1 }).exec()
         }
         return notes
     }

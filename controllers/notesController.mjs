@@ -4,7 +4,6 @@ export class NotesController {
 
     async getAllNotes(req, res) {
         const {sort, filter} = req.query
-        console.log(sort, filter)
         res.json((await noteStore.all(sort, filter)))
     }
 

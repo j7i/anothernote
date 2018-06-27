@@ -11,12 +11,12 @@
             <div class="filter__outer">
                 <nav class="filter">
                     <a class="button add-new" href="detail.html">
-                        <i class="material-icons">add</i> Add Todo
+                        <i class="material-icons">add</i> Add a note
                     </a>
-                    <div class="filter__group filter__group--mobile-up">
-                        <a class="filter__item" href="#">By finish date</a>
-                        <a class="filter__item active" href="#">By created date</a>
-                        <a class="filter__item" href="#">By importance</a>
+                    <div id="sort-filter" class="filter__group filter__group--mobile-up">
+                        <button class="filter__item" data-sort="byFinishDate">By finish date</button>
+                        <button class="filter__item active" data-sort="byCreatedAt">By created date</button>
+                        <button class="filter__item" data-sort="byImportance">By importance</button>
                     </div>
                     <div class="filter__group">
                         <a class="filter__toggle active"><i class="material-icons">check_box</i> Show Finished</a>
@@ -43,6 +43,7 @@
             <div data-id="{{_id}}" class="note{{#if completed}} note--completed{{/if}}">
                 {{#unless completed}}<div class="note__importance note__importance--{{importance}}"></div>{{/unless}}
                 <div class="note__description">
+                    <h5>{{finishDate}}</h5>
                     <h3 class="note__title">
                         <i class="material-icons note__complete-toggle">{{#if completed}}check_box{{else}}check_box_outline_blank{{/if}}</i>
                         {{title}}
