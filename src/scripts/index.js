@@ -8,12 +8,14 @@ class IndexController {
         this.filter = false
         this.notes
         this.filteredNotes
+        this.style
         
         this.noteTemplate = document.querySelector('#notes-template')
         this.noteArea = document.querySelector('.notes__inner')
         
         this.sortActions
         this.completeToggles = []
+        this.styleToggle
     }
 
     checkIfMainView() {
@@ -25,6 +27,7 @@ class IndexController {
         this.sortActions = document.querySelectorAll('button[data-sort]')
         this.filterToggle = document.querySelector('.filter__toggle')
         this.completeToggles = document.querySelectorAll('.note__complete-toggle')
+        this.styleToggle = document.querySelector('.style-toggle')
     }
 
     applyListeners() {
@@ -44,11 +47,10 @@ class IndexController {
                 e.target.children[0].innerHTML = 'check_box'
             } else {
                 e.target.classList.remove('active')
-                console.log(e.target.children)
                 e.target.children[0].innerHTML = 'check_box_outline_blank'
             }
             this.filter = !filter
-            this.filterCompleted()
+            this.filterCompletedNotes()
         })
 
         this.completeToggles.forEach(toggle => {
@@ -58,11 +60,15 @@ class IndexController {
                 this.updateView()
             })
         })
-    }
 
-    init() {
-        this.queryElements()
-        this.applyListeners()
+        this.styleToggle.addEventListener('click', async (e) => {
+            if (!this.style) {
+                document.querySelector('body').classList.add('inverted')
+            } else {
+                document.querySelector('body').classList.remove('inverted')
+            }
+            this.style = !this.style
+        })
     }
 
     renderNotes(notes) {
@@ -72,11 +78,7 @@ class IndexController {
         console.log(notes)
     }
 
-    render(notes) {
-        this.renderNotes(notes)
-    }
-
-    filterCompleted() {
+    filterCompletedNotes() {
         if (this.filter) {
                 this.filteredNotes = this.notes.filter(note => note.completed == !this.filter)
                 this.renderNotes(this.filteredNotes)
@@ -88,12 +90,13 @@ class IndexController {
     
     async updateView() {
         this.notes = await this.noteService.getAllNotes(this.sort, this.filter)
-        this.render(this.notes)
+        this.renderNotes(this.notes)
+        this.queryElements()
+        this.applyListeners()
     }
 }
 
 const controller = new IndexController()
 if (controller.checkIfMainView()) {
-    controller.init()
     controller.updateView()
 }

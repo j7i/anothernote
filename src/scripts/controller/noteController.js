@@ -14,6 +14,8 @@ export default class NoteController {
         this.noteService = new NoteService()
         this.isDetail
         this.noteId
+        this.styleToggle
+        this.style
 
         this.submit
         this.form
@@ -58,7 +60,8 @@ export default class NoteController {
         this.title = document.querySelector('#note-title')
         this.content = document.querySelector('#note-content')
         this.finishDate = document.querySelector('#note-date')
-        this.importanceOptions = document.querySelectorAll('input[name="importance"]');
+        this.importanceOptions = document.querySelectorAll('input[name="importance"]')
+        this.styleToggle = document.querySelector('.style-toggle')
     }
 
     getFormData() {
@@ -96,6 +99,15 @@ export default class NoteController {
             this.form.reset()
             window.location.href = 'index.html'
         }, false)
+
+        this.styleToggle.addEventListener('click', async (e) => {
+            if (this.style) {
+                document.querySelector('body').classList.add('inverted')
+            } else {
+                document.querySelector('body').classList.remove('inverted')
+            }
+            this.style = !this.style
+        })
     }
 }
 

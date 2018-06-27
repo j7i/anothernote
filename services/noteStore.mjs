@@ -13,7 +13,7 @@ export class Note {
 }
 
 export class NoteStore {
-    constructor(db, sort, filterCompleted) {
+    constructor(db) {
         this.db = db || new Datastore({
             filename: `${path.resolve('data')}/notes.db`, autoload: true, timestampData: true
         })

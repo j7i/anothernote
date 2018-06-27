@@ -26,17 +26,17 @@
             <div class="filter__outer filter__outer--mobile">
                 <nav class="filter filter__group--mobile">
                     <div class="filter__group">
-                        <a class="filter__item" href="#">By finish date</a>
-                        <a class="filter__item active" href="#">By created date</a>
-                        <a class="filter__item" href="#">By importance</a>
+                        <a class="filter__item" data-sort="byFinishDate">By finish date</a>
+                        <a class="filter__item active" data-sort="byCreatedAt">By created date</a>
+                        <a class="filter__item" data-sort="byImportance">By importance</a>
                     </div>
                 </nav>
             </div>
         </header>
-
         <main class="notes">
             <div class="notes__inner"></div>
         </main>
+        <div class="style-toggle"><i class="material-icons">brush</i></div>
     </div>
     <script id="notes-template" type="text/x-handlebars-template">
         {{#each this}}
