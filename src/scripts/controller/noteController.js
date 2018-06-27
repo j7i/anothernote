@@ -13,6 +13,7 @@ export default class NoteController {
     constructor() {
         this.noteService = new NoteService()
         this.isDetail
+        this.noteId
 
         this.submit
         this.form
@@ -29,11 +30,11 @@ export default class NoteController {
         return detailClass
     }
 
-    render () {
-        const id = this.getIdParam()
+    render() {
+        this.noteId = this.getIdParam()
         this.addListeners()
-        if(id) {
-            this.fillForm(id)
+        if(this.noteId) {
+            this.fillForm(this.noteId)
         }
     }
 
@@ -43,6 +44,7 @@ export default class NoteController {
     }
 
     async fillForm(byId) {
+        this.submit.innerHTML = 'Save'
         const note = await this.noteService.getNote(byId)
         this.title.value = note.title
         this.content.value = note.content
@@ -52,7 +54,7 @@ export default class NoteController {
 
     queryElements() {
         this.form = document.querySelector('#note-form')
-        this.submit = document.querySelector('#new-todo')
+        this.submit = document.querySelector('#todo-submit')
         this.title = document.querySelector('#note-title')
         this.content = document.querySelector('#note-content')
         this.finishDate = document.querySelector('#note-date')
@@ -60,7 +62,6 @@ export default class NoteController {
     }
 
     getFormData() {
-        console.log(this.importance)
         return new Note({
             title: this.title.value,
             content: this.content.value,
@@ -69,7 +70,17 @@ export default class NoteController {
         })
     }
 
-    addListeners () {
+    async submitForm(note) {
+        if (this.noteId) {
+            note._id = this.noteId
+            this.noteService.update(note)
+            console.log('updated')
+        } else {
+            this.noteService.create(note)
+        }
+    }
+
+    addListeners() {
         this.queryElements()
 
         this.importanceOptions.forEach((option) => {
@@ -81,7 +92,7 @@ export default class NoteController {
         this.form.addEventListener('submit', async(e) => {
             e.preventDefault()
             console.log(this.getFormData())
-            await this.noteService.create(this.getFormData())
+            await this.submitForm(this.getFormData())
             this.form.reset()
             window.location.href = 'index.html'
         }, false)
