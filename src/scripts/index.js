@@ -1,7 +1,7 @@
 import NoteService from './services/noteService.js'
 import NoteController from './controller/noteController.js'
 
-class Refactor {
+class IndexController {
     constructor() {
         this.noteService = new NoteService();
         
@@ -9,6 +9,11 @@ class Refactor {
         this.noteArea = document.querySelector('.notes__inner')
 
         this.completeToggles = []
+    }
+
+    checkIfMainView() {
+        const mainClass = document.querySelector('.notes')
+        return mainClass
     }
 
     render(notes) {
@@ -49,6 +54,7 @@ class Refactor {
     }
 }
 
-//controller
-const controller = new Refactor()
-controller.updateView()
+const controller = new IndexController()
+if (controller.checkIfMainView()) {
+    controller.updateView()
+}

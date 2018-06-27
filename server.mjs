@@ -9,7 +9,7 @@ const   server = express(),
 
 //body parser middleware
 server.use(bodyParser.json())
-server.use(bodyParser.urlencoded())
+server.use(bodyParser.urlencoded({extended: true }))
 server.use(express.static(path.resolve('dist')))
 
 router.get('/', (req, res) => res.sendfile('/index.html'))

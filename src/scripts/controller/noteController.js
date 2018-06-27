@@ -1,10 +1,21 @@
 import NoteService from './../services/noteService.js'
 
+class Note {
+    constructor(note) {
+        this.title = note.title
+        this.content = note.content
+        this.date = note.date
+        this.importance = note.importance
+    }
+}
+
 export default class NoteController {
     constructor() {
         this.noteService = new NoteService()
+        this.isDetail
 
-        this.addNew
+        this.submit
+        this.form
         
         this.title
         this.content
@@ -12,38 +23,42 @@ export default class NoteController {
         this.rating
     }
 
+    checkIfDetailView() {
+        const detailClass = document.querySelector('.note-details')
+        console.log(detailClass)
+        return detailClass
+    }
+
     queryElements() {
-        this.detailView = document.querySelector('.note-details')
-        this.addNew = document.querySelector('#new-todo')
+        this.form = document.querySelector('#note-form')
+        this.submit = document.querySelector('#new-todo')
         this.title = document.querySelector('#note-title')
         this.content = document.querySelector('#note-content')
         this.date = document.querySelector('#note-date')
     }
 
+    getFormData() {
+        return new Note({
+            title: this.title.value,
+            content: this.content.value,
+            date: this.date.value,
+            importance: '1'
+        })
+    }
+
     addListeners() {
-        this.title.addEventListener('input', this.updateTitle())
-        this.content.addEventListener('input', this.updateContent())
-        this.date.addEventListener('input', this.updateDate())
+        this.queryElements()
 
-        this.addNewNoteButton.addEventListener('click', function(note) {
-            note.rating = 1
-            this.noteService.create(note)
-            console.log('Initialised note creation:', note)
+        this.form.addEventListener('submit', async(e) => {
+            e.preventDefault()
+            console.log(this.getFormData())
+            await this.noteService.create(this.getFormData())
+            this.form.reset()
         }, false)
-    }
-
-    updateTitle () { 
-        this.title = this.value
-    }
-
-    updateContent () { 
-        this.content = this.value
-    }
-
-    updateDate () {
-        this.finishDate = this.value
     }
 }
 
 const controller = new NoteController()
-controller.addListeners()
+if (controller.checkIfDetailView()) {
+    controller.addListeners()
+}
