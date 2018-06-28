@@ -1,66 +1,56 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8"/>
-    <title>notes-jw</title>
-    <link rel="stylesheet" type="text/css" href="/styles/main.min.css">
-</head>
-<body>
-    <div class="todo-app">
-        <header>
-            <div class="filter__outer">
-                <nav class="filter">
-                    <a class="button add-new" href="detail.html">
-                        <i class="material-icons">add</i> Add a note
-                    </a>
-                    <div id="sort-filter" class="filter__group filter__group--mobile-up">
-                        <button class="filter__item" data-sort="byFinishDate">By finish date</button>
-                        <button class="filter__item active" data-sort="byCreatedAt">By created date</button>
-                        <button class="filter__item" data-sort="byImportance">By importance</button>
-                    </div>
-                    <div class="filter__group">
-                        <a class="filter__toggle active"><i class="material-icons">check_box</i> Show Finished</a>
-                    </div>
-                </nav>
-            </div>
-            <div class="filter__outer filter__outer--mobile">
-                <nav class="filter filter__group--mobile">
-                    <div class="filter__group">
-                        <a class="filter__item" data-sort="byFinishDate">By finish date</a>
-                        <a class="filter__item active" data-sort="byCreatedAt">By created date</a>
-                        <a class="filter__item" data-sort="byImportance">By importance</a>
-                    </div>
-                </nav>
-            </div>
-        </header>
-        <main class="notes">
-            <div class="notes__inner"></div>
-        </main>
-        <div class="style-toggle"><i class="material-icons">brush</i></div>
-    </div>
-    <script id="notes-template" type="text/x-handlebars-template">
-        {{#each this}}
-            <div data-id="{{_id}}" class="note{{#if completed}} note--completed{{/if}}">
-                {{#unless completed}}<div class="note__importance note__importance--{{importance}}"></div>{{/unless}}
-                <div class="note__description">
-                    <h5>{{finishDate}}</h5>
-                    <h3 class="note__title">
-                        <i class="material-icons note__complete-toggle">{{#if completed}}check_box{{else}}check_box_outline_blank{{/if}}</i>
-                        {{title}}
-                    </h3>
-                    <p class="note__content">{{content}}</p>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>📆 anothernote</title>
+        <link rel="stylesheet" type="text/css" href="/styles/main.min.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="navigation__outer">
+                    <nav class="navigation">
+                        <a class="button add-new" href="detail.html">
+                            <i class="material-icons">add</i> Add a note
+                        </a>
+                        <div class="sort">
+                            <button class="sort__item" data-sort="byFinishDate">By finish date</button>
+                            <button class="sort__item active" data-sort="byCreatedAt">By created date</button>
+                            <button class="sort__item" data-sort="byImportance">By importance</button>
+                        </div>
+                        <div>
+                            <a class="filter__toggle active"><i class="material-icons">check_box</i> Show Finished</a>
+                        </div>
+                    </nav>
                 </div>
-                <a href="/detail.html?id={{_id}}">
-                    <div class="note__edit">
-                        <i class="material-icons">edit</i>
+            </header>
+            <main class="notes">
+                <div class="notes__inner"></div>
+            </main>
+            <div class="style-toggle"><i class="material-icons">brush</i></div>
+        </div>
+        <script id="notes-template" type="text/x-handlebars-template">
+            {{#each this}}
+                <article data-id="{{_id}}" class="note{{#if completed}} note--completed{{/if}}">
+                    {{#unless completed}}<div class="note__importance note__importance--{{importance}}"></div>{{/unless}}
+                    <div class="note__description">
+                        {{#unless completed}}<h5 class="note__date">{{finishDate}}</h5>{{/unless}}
+                        <h3 class="note__title">
+                            <i class="material-icons note__complete-toggle">{{#if completed}}check_box{{else}}check_box_outline_blank{{/if}}</i>
+                            {{title}}
+                        </h3>
+                        <p class="note__content">{{content}}</p>
                     </div>
-                </a>
-            </div>
-        {{/each}}
-    </script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
-    <script src="/scripts/bundle.js"></script>
-</body>
-
-
+                    <a href="/detail.html?id={{_id}}">
+                        <div class="note__edit">
+                            <i class="material-icons">edit</i>
+                        </div>
+                    </a>
+                </article>
+            {{/each}}
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+        <script src="/scripts/bundle.js"></script>
+    </body>
 </html>

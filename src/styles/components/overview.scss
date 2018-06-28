@@ -1,0 +1,28 @@
+@import 'note';
+
+.notes {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    padding-top: 48px;
+    width: 100%;
+    position: relative;
+
+    @include sm { padding-top: 24px }
+    
+    &__inner { @extend %width-shared }
+
+    &__new {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        margin-bottom: 12px;
+        
+        button { padding-left: 12px }
+        
+        i {
+            vertical-align: bottom;
+            padding-right: 6px;
+        }
+    }
+}

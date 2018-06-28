@@ -1,71 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <title>notes-jw</title>
-    <link rel="stylesheet" href="/styles/main.min.css">
-</head>
-<body>
-    <div class="todo-app">
-        <header>
-            <div class="navigation__outer">
-                <nav class="navigation">
-                    <a href="index.html" class="button--default">
-                        <i class="material-icons">clear</i> Cancel
-                    </a>
-                    <span class="clear">&nbsp;</span>
-                </nav>
-            </div>
-        </header>
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>📆 anothernote</title>
+        <link rel="stylesheet" href="/styles/main.min.css">
+    </head>
+    <body>
+        <div class="wrapper">
+            <header>
+                <div class="navigation__outer">
+                    <nav class="navigation">
+                        <a href="index.html" class="button--default">
+                            <i class="material-icons">clear</i> Cancel
+                        </a>
+                        <span class="clear">&nbsp;</span>
+                    </nav>
+                </div>
+            </header>
 
-        <main class="note-details">
-            <div class="note-details__inner">
-
-                <form class="edit-note" id="note-form">
-                    <div class="edit-note__description">
-                        <div class="edit-note__title">
-                            <h4>Title</h4>
-                            <input id="note-title" type="text" value="" placeholder="Add a title" required>
-                        </div>
-        
-                        <div class="edit-note__content">
-                            <h4>Description</h4>
-                            <textarea id="note-content" value="" placeholder="Describe your task"></textarea>
-                        </div>
-                    </div>
-
-                    <div class="edit-note__addition">
-                        <div class="edit-note__date">
-                            <h4>When should it be completed?</h4>
-                            <input id="note-date" value="" type="date">
-                        </div>
-
-                        <div class="edit-note__rating">
-                            <h4>Priority</h4>
-                            <div class="edit-note__importance">
-                                <label>Low
-                                    <input type="radio" name="importance" value="1" class="edit-note__importance-radio" checked/>
-                                    <span></span>
-                                </label>
-                                <label>Medium
-                                    <input type="radio" name="importance" value="2" class="edit-note__importance-radio" />
-                                    <span></span>
-                                </label>
-                                <label>High
-                                    <input type="radio" name="importance" value="3" class="edit-note__importance-radio" />
-                                    <span></span>
-                                </label>
+            <main class="note-details">
+                <div class="note-details__inner">
+                    <form class="edit-note" id="note-form">
+                        <section class="edit-note__description">
+                            <div class="edit-note__title">
+                                <h4>Title</h4>
+                                <input id="note-title" type="text" value="" placeholder="Add a title" required>
                             </div>
-                        </div>
-                    </div>
-                    <div class="note-details__save">
-                        <button id="todo-submit" type="submit" class="button button--big">Add This Note</a>
-                    </div>
-                </form>
-            </div>
-        </main>
-        <div class="style-toggle"><i class="material-icons">brush</i></div>
-    </div>
+            
+                            <div class="edit-note__content">
+                                <h4>Description</h4>
+                                <textarea id="note-content" value="" placeholder="Describe your task"></textarea>
+                            </div>
+                        </section>
 
-    <script src="/scripts/bundle.js"></script>
-</body>
+                        <section class="edit-note__addition">
+                            <div class="edit-note__date">
+                                <h4>When should it be completed?</h4>
+                                <input id="note-date" value="" type="date">
+                            </div>
+
+                            <div class="edit-note__rating">
+                                <h4>Priority</h4>
+                                <div class="edit-note__importance">
+                                    <label>Low
+                                        <input type="radio" name="importance" value="1" class="edit-note__importance-radio"/>
+                                        <span></span>
+                                    </label>
+                                    <label>Medium
+                                        <input type="radio" name="importance" value="2" class="edit-note__importance-radio" />
+                                        <span></span>
+                                    </label>
+                                    <label>High
+                                        <input type="radio" name="importance" value="3" class="edit-note__importance-radio" />
+                                        <span></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="note-details__save">
+                            <button id="todo-submit" type="submit" class="button button--big">Add This Note</button>
+                        </div>
+                    </form>
+                </div>
+            </main>
+            <div class="style-toggle"><i class="material-icons">brush</i></div>
+        </div>
+
+        <script src="/scripts/bundle.js"></script>
+    </body>
 </html>

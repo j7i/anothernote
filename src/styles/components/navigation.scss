@@ -1,12 +1,4 @@
-.add-new {
-
-    & i {
-        line-height: inherit;
-        padding-right: 6px;
-    }
-}
-
-.filter, .navigation {
+.navigation {
     align-items: center;
     display: flex;
     height: 100%;
@@ -24,79 +16,67 @@
         top: 0;
         width: 100%;
         z-index: 10;
-
-        @include md {
-            &--mobile {
-                display: none;
-            }
-        }
     }
 
-    &__group {
+    .add-new i {
+        line-height: inherit;
+        padding-right: 6px;
+    }
+
+    .sort {
         height: 100%;
         display: flex;
         align-items: center;
-
-        &--mobile-up {
-            display: none;
+        background-color: white;
     
+        @include sm {
+                position: absolute;
+                top: 64px;
+                width: 100%;
+                left: 0;
+                justify-content: space-around;
+                box-shadow: $box-shadow-1;
         }
-    
-        @include md {
-            &--mobile-up {
+
+        &__item {
+            align-items: center;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: $inactive-grey-color;
+            display: inherit;
+            font-size: 14px;
+            height: 100%;
+            padding: 0 16px 0;
+            text-decoration: none;
+            cursor: pointer;
+            outline: none;
+            background-color: white;
+
+            @include sm {
                 display: flex;
+                justify-content: center;
+                width: 100%;
             }
             
-            &--mobile {
-                display: none;
+            &.active {
+                background-color: lighten($primary-color, 32%);
+                border-bottom: 3px solid $primary-color;
+                color: #000;
+                cursor: default;
+                font-weight: 600;
             }
-        }
     
-        &--mobile {
-            justify-content: center;
+            &:hover { color: #000 }
         }
     }
 
-    &__item {
-        align-items: center;
-        border: none;
-        border-bottom: 3px solid transparent;
-        color: #7e7e7e;
-        display: inherit;
-        font-size: 14px;
-        height: 100%;
-        padding: 0 16px 0;
-        text-decoration: none;
-        cursor: pointer;
-        transition: all .2ms ease-in-out;
-        outline: none;
-        
-        &.active {
-            background-color: lighten($primary-color, 32%);
-            border-bottom: 3px solid $primary-color;
-            color: #484848;
-            cursor: default;
-            font-weight: 600;
-        }
-
-        &:hover {
-            color: #484848;
-        }
-    }
-
-    &__toggle {
+    .filter__toggle {
         cursor: pointer;
 
-        &.active {
-            color: $primary-color;
-        }
+        &.active { color: $primary-color }
 
-        & i {
-            vertical-align: bottom;
-        }
+        & i { vertical-align: bottom }
 
-        &:hover {
-            font-weight: 600;
-        }
+        &:hover { font-weight: 600 }
     }
 }

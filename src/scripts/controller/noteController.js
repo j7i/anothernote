@@ -5,6 +5,7 @@ class Note {
         this.title = note.title
         this.content = note.content
         this.finishDate = note.finishDate
+        this.completed = note.completed
         this.importance = note.importance
     }
 }
@@ -23,6 +24,7 @@ export default class NoteController {
         this.title
         this.content
         this.finishDate
+        this.completed
         this.importance = 1
     }
 
@@ -40,20 +42,6 @@ export default class NoteController {
         }
     }
 
-    getIdParam() {
-        const url = new URLSearchParams(window.location.search);
-        return url.get('id');
-    }
-
-    async fillForm(byId) {
-        this.submit.innerHTML = 'Save'
-        const note = await this.noteService.getNote(byId)
-        this.title.value = note.title
-        this.content.value = note.content
-        this.finishDate.value = note.finishDate
-        this.importance = note.importance
-    }
-
     queryElements() {
         this.form = document.querySelector('#note-form')
         this.submit = document.querySelector('#todo-submit')
@@ -62,25 +50,6 @@ export default class NoteController {
         this.finishDate = document.querySelector('#note-date')
         this.importanceOptions = document.querySelectorAll('input[name="importance"]')
         this.styleToggle = document.querySelector('.style-toggle')
-    }
-
-    getFormData() {
-        return new Note({
-            title: this.title.value,
-            content: this.content.value,
-            finishDate: this.finishDate.value,
-            importance: Number(this.importance)
-        })
-    }
-
-    async submitForm(note) {
-        if (this.noteId) {
-            note._id = this.noteId
-            this.noteService.update(note)
-            console.log('updated')
-        } else {
-            this.noteService.create(note)
-        }
     }
 
     addListeners() {
@@ -94,20 +63,58 @@ export default class NoteController {
 
         this.form.addEventListener('submit', async(e) => {
             e.preventDefault()
-            console.log(this.getFormData())
             await this.submitForm(this.getFormData())
             this.form.reset()
             window.location.href = 'index.html'
         }, false)
 
         this.styleToggle.addEventListener('click', async (e) => {
-            if (this.style) {
+            if (!this.style) {
                 document.querySelector('body').classList.add('inverted')
             } else {
                 document.querySelector('body').classList.remove('inverted')
             }
             this.style = !this.style
         })
+    }
+
+    getIdParam() {
+        const url = new URLSearchParams(window.location.search);
+        return url.get('id');
+    }
+
+    async fillForm(byId) {
+        this.submit.innerHTML = 'Save'
+        const note = await this.noteService.getNote(byId)
+        this.title.value = note.title
+        this.content.value = note.content
+        this.finishDate.value = note.finishDate
+        this.completed = note.completed
+        this.importance = note.importance
+        this.importanceOptions.forEach(option => {
+            if (option.value == this.importance) {
+                option.checked = 'checked'
+            }
+        })
+    }
+
+    getFormData() {
+        return new Note({
+            title: this.title.value,
+            content: this.content.value,
+            finishDate: this.finishDate.value,
+            completed: this.completed,
+            importance: Number(this.importance)
+        })
+    }
+
+    async submitForm(note) {
+        if (this.noteId) {
+            note._id = this.noteId
+            this.noteService.update(note)
+        } else {
+            this.noteService.create(note)
+        }
     }
 }
 

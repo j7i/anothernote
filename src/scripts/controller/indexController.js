@@ -1,21 +1,24 @@
-import NoteService from './services/noteService.js'
-import NoteController from './controller/noteController.js'
+import NoteService from './../services/noteService.js'
+import NoteController from './noteController.js'
 
 class IndexController {
     constructor() {
         this.noteService = new NoteService();
+        this.style
+
         this.sort = 'byCreatedAt'
         this.filter = false
         this.notes
         this.filteredNotes
-        this.style
         
         this.noteTemplate = document.querySelector('#notes-template')
         this.noteArea = document.querySelector('.notes__inner')
         
         this.sortActions
-        this.completeToggles = []
+        this.filterToggle
         this.styleToggle
+
+        this.completeToggles = []
     }
 
     checkIfMainView() {
@@ -26,7 +29,6 @@ class IndexController {
     queryElements() {
         this.sortActions = document.querySelectorAll('button[data-sort]')
         this.filterToggle = document.querySelector('.filter__toggle')
-        this.completeToggles = document.querySelectorAll('.note__complete-toggle')
         this.styleToggle = document.querySelector('.style-toggle')
     }
 
@@ -36,29 +38,20 @@ class IndexController {
                 this.sort = e.target.dataset.sort
                 document.querySelector('.active').classList.remove('active')
                 e.target.classList.add('active')
-                this.updateView()
+                this.updateNotesTemplate()
             })
         })
 
         this.filterToggle.addEventListener('click', async (e) => {
-            let filter = this.filter
-            if (filter) {
+            if (this.filter) {
                 e.target.classList.add('active')
                 e.target.children[0].innerHTML = 'check_box'
             } else {
                 e.target.classList.remove('active')
                 e.target.children[0].innerHTML = 'check_box_outline_blank'
             }
-            this.filter = !filter
+            this.filter = !this.filter
             this.filterCompletedNotes()
-        })
-
-        this.completeToggles.forEach(toggle => {
-            toggle.addEventListener('click', async (e) => {
-                const id = e.target.closest('.note').dataset.id
-                await this.noteService.toggleComplete(id)
-                this.updateView()
-            })
         })
 
         this.styleToggle.addEventListener('click', async (e) => {
@@ -71,32 +64,54 @@ class IndexController {
         })
     }
 
-    renderNotes(notes) {
-        const noteTemplate = this.noteTemplate.innerHTML
-        const compileNoteTemplate = Handlebars.compile(noteTemplate)
-        this.noteArea.innerHTML = compileNoteTemplate(notes)
-        console.log(notes)
+    init() {
+        this.queryElements()
+        this.applyListeners()
     }
 
     filterCompletedNotes() {
         if (this.filter) {
                 this.filteredNotes = this.notes.filter(note => note.completed == !this.filter)
-                this.renderNotes(this.filteredNotes)
+                this.updateNotesTemplate(this.filteredNotes)
         } else {
-            this.renderNotes(this.notes)
+            this.updateNotesTemplate(this.notes)
         }
         
     }
+
+    queryTemplateElements() {
+        this.completeToggles = document.querySelectorAll('.note__complete-toggle')
+    }
+
+    applyTemplateListeners() {
+        this.completeToggles.forEach(toggle => {
+            toggle.addEventListener('click', async (e) => {
+                const id = e.target.closest('.note').dataset.id
+                await this.noteService.toggleComplete(id)
+                this.updateNotesTemplate()
+            })
+        })
+    }
+
+    renderNotesTemplate(notes) {
+        const noteTemplate = this.noteTemplate.innerHTML
+        const compileNoteTemplate = Handlebars.compile(noteTemplate)
+        this.noteArea.innerHTML = compileNoteTemplate(notes)
+    }
     
-    async updateView() {
-        this.notes = await this.noteService.getAllNotes(this.sort, this.filter)
-        this.renderNotes(this.notes)
-        this.queryElements()
-        this.applyListeners()
+    async updateNotesTemplate(filteredNotes) {
+        let notes = filteredNotes
+        if (!filteredNotes) {
+            notes = this.notes = await this.noteService.getAllNotes(this.sort, this.filter)
+        }
+        this.renderNotesTemplate(notes)
+        this.queryTemplateElements()
+        this.applyTemplateListeners()
     }
 }
 
 const controller = new IndexController()
 if (controller.checkIfMainView()) {
-    controller.updateView()
+    controller.updateNotesTemplate()
+    controller.init()
 }

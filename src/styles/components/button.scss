@@ -1,0 +1,37 @@
+.button {
+    display: inherit;
+    padding: 0 16px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 2px;
+    color: #fff;
+    letter-spacing: .5px;
+    white-space: nowrap;
+    text-decoration: none;
+    border: 0;
+    background-color: $primary-color;
+    line-height: 36px;
+    height: 36px;
+
+    &:hover {
+        background-color: lighten($primary-color, 1%);
+        box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    }
+
+    &--default {
+        padding: 0 16px;
+        line-height: 36px;
+        
+        .material-icons { vertical-align: text-bottom }
+
+        &:hover { background-color: $light-grey-color }
+    }
+
+    &--big {
+        height: 44px;
+        line-height: 44px;
+        font-size: 18px;
+        padding: 0 32px;
+    }
+}

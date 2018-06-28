@@ -5,7 +5,8 @@
 /node_modules
 
 # db Files
-.db
+data/*.db
+*.db
 
 # IDE - VSCode
 .vscode/*

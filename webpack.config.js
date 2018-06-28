@@ -1,6 +1,6 @@
 module.exports = {
     entry: {
-        main: ['./src/scripts/index.js']
+        main: ['./src/scripts/controller/indexController.js']
     },
     devtool: 'inline-source-map',
     output: {
